@@ -10,12 +10,20 @@
             <label for="lists">Current List:</label>
 
             <select name="lists" id="lists">
-                <option value="list">Example</option>
+                <option value="list">List</option>
                 <option value="due-today">Due: Today</option>
                 <option value="due-this-week">Due: This Week</option>
             </select>
         </div>
+        <div id="task-input">
+            <input type="text" id="task-name" name="task0" value="Task">
+            <label for="task-name"></label>
 
+            <input type="date" id="task-due-date" name="task0" value="Due Date">
+            <label for="task-due-date"></label>
+
+            <button> Add Task</button>
+        </div>
         <div id="tasks">
             <div class="task">
                 <div class="text">
@@ -24,9 +32,6 @@
                 </div>
                 <input type="checkbox" id="task1" name="vehicle1" value="Bike">
                 <label for="task1"></label>
-            </div>
-            <div class="button-enclosure">
-                <button> Add Task</button>
             </div>
         </div>
     </body>
