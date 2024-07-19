@@ -32,6 +32,13 @@ h1 {
     height: 30px;
     font-size: 20px;
 }
+
+#tasks {
+    display: grid;
+    grid-auto-flow: row;
+    gap: 30px;
+}
+
 .task {
     display: flex;
     gap: 15px;
@@ -52,4 +59,15 @@ input {
     width: 25px;
     height: 25px;
     align-self: center;
+}
+
+.button-enclosure {
+    display: grid;
+}
+
+button {
+    font-size: 20px;
+    padding: 10px;
+    justify-self: center;
+
 }
