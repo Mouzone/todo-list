@@ -61,7 +61,7 @@ button {
 
 .task {
     display: flex;
-    gap: 15px;
+    gap: 10px;
 }
 
 .text {
@@ -75,6 +75,7 @@ button {
     padding: 20px 30px 20px 30px;
 }
 
+/*todo: make checkbox a circle*/
 input[type=checkbox]{
     width: 25px;
     height: 25px;
