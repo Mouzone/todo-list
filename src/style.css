@@ -39,12 +39,18 @@ h1 {
 }
 
 button {
-    padding: 5px;
+    margin-left: 10px;
+    width: 90px;
 }
 
-input[type=text],
-input[type=date] {
-    padding: 5px;
+#task-name,
+#task-due-date {
+    font-size: 20px;
+    padding: 10px;
+}
+
+#task-name {
+    width: 150px;
 }
 
 #tasks {
