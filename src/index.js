@@ -29,15 +29,12 @@ form.addEventListener("submit", event => {
     checkbox.name = "task" + task_id;
     checkbox.addEventListener("click", handleClick)
 
-    const label = document.createElement('label');
-    label.setAttribute("for", "task" + task_id)
-
     new_task_text.appendChild(new_task_header)
     new_task_text.appendChild(new_task_p)
     new_task_card.appendChild(new_task_text)
-    content_area.appendChild(new_task_card)
-    new_task_card.appendChild(label);
     new_task_card.appendChild(checkbox)
+
+    content_area.appendChild(new_task_card)
     task_id++
     form.reset()
 })

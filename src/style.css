@@ -12,6 +12,7 @@ body {
     height: 100vh;
     display: flex;
     margin: 20px 60px 20px 60px;
+    gap: 40px
 }
 
 #left {
@@ -61,13 +62,16 @@ button {
 }
 
 #tasks {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 30px;
 }
 
 .task {
     display: flex;
     gap: 10px;
+    width: 280px;
+    height: 120px;
 }
 
 .text {
