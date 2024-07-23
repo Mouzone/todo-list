@@ -1,14 +1,13 @@
 import './style.css'
 
-const button = document.querySelector("button")
-const form = document.querySelector("form")
+const form = document.querySelector("form#task-input")
 const new_task_name = document.querySelector("input#task-name")
 const new_task_due_date = document.querySelector("input#task-due-date")
 const content_area = document.getElementById("tasks")
 let task_id = 1
 
+//todo: modify to add task to the current list data structure
 form.addEventListener("submit", event => {
-    // todo: figure out how to reset form
     event.preventDefault()
 
     const new_task_card = document.createElement("div")
@@ -49,3 +48,11 @@ function handleClick(event){
     const card_to_remove = document.querySelector(`div.task[data-id='${id_of_card}']`)
     content_area.removeChild(card_to_remove)
 }
+// todo: form element for creating new empty list
+
+// todo: function to generate tasklist onto webpage
+// remove all content from other list
+// generate tasks for all tasks inside tasklist
+// store tasks inside objects and those taskslists inside another object
+
+// todo: function to remove list and delete its tasks

@@ -5,26 +5,40 @@
         <title>Title</title>
     </head>
     <body>
-        <h1> ToDo </h1>
-        <div id="select">
-            <label for="lists">Current List:</label>
+        <div id="left">
+            <h1> ToDo </h1>
 
-            <select name="lists" id="lists">
-                <option value="list">List</option>
-                <option value="due-today">Due: Today</option>
-                <option value="due-this-week">Due: This Week</option>
-            </select>
+            <div id="select">
+                <label for="lists">Current List:</label>
+
+                <select name="lists" id="lists">
+                    <option value="list">List</option>
+                    <option value="due-today">Due: Today</option>
+                    <option value="due-this-week">Due: This Week</option>
+                </select>
+            </div>
+
+            <form id="list-input">
+                <label for="list-name"></label>
+                <input type="text" id="list-name" name="list-input" value="List" onfocus="this.value=''">
+
+                <button type="submit"> Add List</button>
+            </form>
+
+            <form id="task-input">
+                <label for="task-name"></label>
+                <input type="text" id="task-name" name="name-input" value="Task" onfocus="this.value=''">
+
+                <label for="task-due-date"></label>
+                <input type="date" id="task-due-date" name="date-input">
+
+                <button type="submit"> Add Task</button>
+            </form>
         </div>
 
-        <form id="task-input">
-            <label for="task-name"></label>
-            <input type="text" id="task-name" name="name-input" value="Task" onfocus="this.value=''">
+<!--        todo: make create lists and create tasks two columns-->
+<!--        todo: make lists selectable and generate the correct taskslist-->
 
-            <label for="task-due-date"></label>
-            <input type="date" id="task-due-date" name="date-input">
-
-            <button type="submit"> Add Task</button>
-        </form>
 
         <div id="tasks">
 <!--            <div class="task">-->
