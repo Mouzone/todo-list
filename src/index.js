@@ -18,7 +18,6 @@ task_form.addEventListener("submit", event => {
 
     task_id++
     task_form.reset()
-    console.log(lists)
 })
 
 const list_form = document.querySelector("form#list-input")
@@ -34,14 +33,6 @@ list_form.addEventListener("submit", event => {
     list_select.appendChild(list_option)
 
     list_form.reset()
-})
-
-list_select.addEventListener("change", event => {
-    content_area.innerHTML = ""
-    Object.entries(lists[list_select.value]).forEach(([task_id, values]) => {
-        createTaskElement(task_id, values.task_name, values.due_date)
-    })
-    list_select.value
 })
 
 function createTaskElement(task_id, new_task_name, new_task_due_date) {
@@ -79,15 +70,28 @@ function handleClick(event) {
     content_area.removeChild(card_to_remove)
 }
 
-const lists = {
-    "List": {},
-    "Due Today": {},
-    "Due This Week": {}
+list_select.addEventListener("change", handleListSwitch)
+
+function handleListSwitch() {
+    content_area.innerHTML = ""
+    Object.entries(lists[list_select.value]).forEach(([task_id, values]) => {
+        createTaskElement(task_id, values.task_name, values.due_date)
+    })
 }
 
-// todo: function to generate tasklist onto webpage
-// remove all content from other list
-// generate tasks for all tasks inside tasklist
-// store tasks inside objects and those taskslists inside another object
+// todo: add a popup once it clicks to confirm list deletion
+// todo: make Due: Today and Due: This Week not addable and not removeable
+const remove_button = document.querySelector("button#remove-list")
+remove_button.addEventListener("click", event => {
+    delete lists[list_select.value]
+    const option = document.querySelector(`option[value='${list_select.value}']`)
+    list_select.removeChild(option)
 
-// todo: function to remove list and delete its tasks
+    handleListSwitch()
+})
+
+const lists = {
+    "List": {},
+    "Due: Today": {},
+    "Due: This Week": {}
+}
