@@ -1,13 +1,13 @@
 import './style.css'
 
-const form = document.querySelector("form#task-input")
+const task_form = document.querySelector("form#task-input")
 const new_task_name = document.querySelector("input#task-name")
 const new_task_due_date = document.querySelector("input#task-due-date")
 const content_area = document.getElementById("tasks")
 let task_id = 1
 
 //todo: modify to add task to the current list data structure
-form.addEventListener("submit", event => {
+task_form.addEventListener("submit", event => {
     event.preventDefault()
 
     const new_task_card = document.createElement("div")
@@ -36,14 +36,36 @@ form.addEventListener("submit", event => {
 
     content_area.appendChild(new_task_card)
     task_id++
-    form.reset()
+    task_form.reset()
 })
 
-function handleClick(event){
+const list_form = document.querySelector("form#list-input")
+const list_select = document.querySelector("select")
+const list_name = document.getElementById("list-name")
+// <option value="list">List</option>
+list_form.addEventListener("submit", event => {
+    event.preventDefault()
+
+    lists[`${list_name.value}`] = {}
+    const list_option = document.createElement("option")
+    list_option.value = list_name.value
+    list_option.textContent = list_name.value
+    list_select.appendChild(list_option)
+
+    list_form.reset()
+})
+
+function handleClick(event) {
     const checkbox = event.currentTarget
     const id_of_card = checkbox.id.slice(4)
     const card_to_remove = document.querySelector(`div.task[data-id='${id_of_card}']`)
     content_area.removeChild(card_to_remove)
+}
+
+const lists = {
+    "List": {},
+    "Due Today": {},
+    "Due This Week": {}
 }
 // todo: form element for creating new empty list
 
