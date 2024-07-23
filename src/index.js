@@ -10,6 +10,41 @@ let task_id = 1
 task_form.addEventListener("submit", event => {
     event.preventDefault()
 
+    createTaskElement(task_id, new_task_name.value, new_task_due_date.value)
+
+    lists[list_select.value][task_id] = {}
+    lists[list_select.value][task_id].task_name = new_task_name.value
+    lists[list_select.value][task_id].due_date = new_task_due_date.value
+
+    task_id++
+    task_form.reset()
+    console.log(lists)
+})
+
+const list_form = document.querySelector("form#list-input")
+const list_select = document.querySelector("select")
+const list_name = document.getElementById("list-name")
+list_form.addEventListener("submit", event => {
+    event.preventDefault()
+
+    lists[`${list_name.value}`] = {}
+    const list_option = document.createElement("option")
+    list_option.value = list_name.value
+    list_option.textContent = list_name.value
+    list_select.appendChild(list_option)
+
+    list_form.reset()
+})
+
+list_select.addEventListener("change", event => {
+    content_area.innerHTML = ""
+    Object.entries(lists[list_select.value]).forEach(([task_id, values]) => {
+        createTaskElement(task_id, values.task_name, values.due_date)
+    })
+    list_select.value
+})
+
+function createTaskElement(task_id, new_task_name, new_task_due_date) {
     const new_task_card = document.createElement("div")
     new_task_card.classList.add("task")
     new_task_card.dataset.id = `${task_id}`
@@ -18,10 +53,10 @@ task_form.addEventListener("submit", event => {
     new_task_text.classList.add("text")
 
     const new_task_header = document.createElement("h4")
-    new_task_header.textContent = new_task_name.value
+    new_task_header.textContent = new_task_name
 
     const new_task_p = document.createElement("p")
-    new_task_p.textContent = new_task_due_date.value
+    new_task_p.textContent = new_task_due_date
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -35,25 +70,7 @@ task_form.addEventListener("submit", event => {
     new_task_card.appendChild(checkbox)
 
     content_area.appendChild(new_task_card)
-    task_id++
-    task_form.reset()
-})
-
-const list_form = document.querySelector("form#list-input")
-const list_select = document.querySelector("select")
-const list_name = document.getElementById("list-name")
-// <option value="list">List</option>
-list_form.addEventListener("submit", event => {
-    event.preventDefault()
-
-    lists[`${list_name.value}`] = {}
-    const list_option = document.createElement("option")
-    list_option.value = list_name.value
-    list_option.textContent = list_name.value
-    list_select.appendChild(list_option)
-
-    list_form.reset()
-})
+}
 
 function handleClick(event) {
     const checkbox = event.currentTarget
@@ -67,7 +84,6 @@ const lists = {
     "Due Today": {},
     "Due This Week": {}
 }
-// todo: form element for creating new empty list
 
 // todo: function to generate tasklist onto webpage
 // remove all content from other list
