@@ -6,6 +6,7 @@ const new_task_due_date = document.querySelector("input#task-due-date")
 const content_area = document.getElementById("tasks")
 let task_id = 1
 
+// todo: make text go ... if task is too long
 //todo: modify to add task to the current list data structure
 task_form.addEventListener("submit", event => {
     event.preventDefault()
@@ -47,7 +48,7 @@ function createTaskElement(task_id, new_task_name, new_task_due_date) {
     new_task_header.textContent = new_task_name
 
     const new_task_p = document.createElement("p")
-    new_task_p.textContent = new_task_due_date
+    new_task_p.textContent = `Due: ${new_task_due_date}`
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
