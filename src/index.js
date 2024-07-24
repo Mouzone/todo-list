@@ -16,6 +16,7 @@ task_form.addEventListener("submit", event => {
     lists[list_select.value][task_id] = {}
     lists[list_select.value][task_id].task_name = new_task_name.value
     lists[list_select.value][task_id].due_date = new_task_due_date.value
+    localStorage.setItem("lists", JSON.stringify(lists));
 
     task_id++
     task_form.reset()
@@ -28,6 +29,8 @@ list_form.addEventListener("submit", event => {
     event.preventDefault()
 
     lists[`${list_name.value}`] = {}
+    localStorage.setItem("lists", JSON.stringify(lists));
+
     const list_option = document.createElement("option")
     list_option.value = list_name.value
     list_option.textContent = list_name.value
@@ -85,14 +88,35 @@ function handleListSwitch() {
 const remove_button = document.querySelector("button#remove-list")
 remove_button.addEventListener("click", event => {
     delete lists[list_select.value]
+    localStorage.setItem("lists", JSON.stringify(lists));
+
     const option = document.querySelector(`option[value='${list_select.value}']`)
     list_select.removeChild(option)
 
     handleListSwitch()
 })
 
-const lists = {
+function initializePage() {
+    Object.keys(lists).forEach(list_to_generate => {
+        const option = document.createElement("option")
+        option.value = list_to_generate
+        option.textContent = list_to_generate
+        list_select.appendChild(option)
+    })
+
+    handleListSwitch()
+}
+
+let lists = {
     "List": {},
     "Due: Today": {},
     "Due: This Week": {}
 }
+
+if (localStorage.getItem("lists")) {
+    lists = JSON.parse(localStorage.getItem("lists"))
+} else {
+    localStorage.setItem("lists", JSON.stringify(lists));
+}
+
+initializePage()
